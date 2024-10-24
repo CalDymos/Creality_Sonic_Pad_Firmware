@@ -1,10 +1,6 @@
 # __Folders:__
 
- docs : Operating instructions document
- 
- imgs : Sonic Pad Firmware 
- 
- tools : Firmware burning tool
+
  
 # __Useage:__
 
