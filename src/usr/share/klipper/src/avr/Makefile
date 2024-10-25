@@ -8,6 +8,30 @@ dirs-y += src/avr src/generic
 CFLAGS += -mmcu=$(CONFIG_MCU)
 
 # Add avr source files
+modify_timer:
+	@echo "Modifying timer.c"
+	cp -f src/avr/hard_pwm_.c src/avr/hard_pwm.c
+ifeq ($(CONFIG_30HZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 7; // set Timer 1 divisor to PWM freq of 30.64 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_122HZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 6; // set Timer 1 divisor to PWM freq of 122.55 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_245HZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 5; // set Timer 1 divisor to PWM freq of 245.1 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_DEFAULT_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 4; // set Timer 1 divisor to PWM freq of 490.2 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_980HZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 3; // set Timer 1 divisor to PWM freq of 980.39 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_3921HZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 2; // set Timer 1 divisor to PWM freq of 3921.16 Hz\n} @' src/avr/hard_pwm.c
+endif
+ifeq ($(CONFIG_31KHZ_TIMER_D3_D11), y)
+		sed -i 's@//#TIMER2_PWM_D3&D11#@if \(pin == GPIO\('\''D'\'', 3\) || pin == GPIO\('\''D'\'', 11\)\) { // Prüfen, ob der Pin D3 oder D11 ist\n    TCCR2B = \(TCCR2B \& 248\) | 1; // set Timer 1 divisor to PWM freq of 31372.55 Hz\n} @' src/avr/hard_pwm.c
+endif
 src-y += avr/main.c avr/timer.c
 src-$(CONFIG_HAVE_GPIO) += avr/gpio.c
 src-$(CONFIG_HAVE_GPIO_ADC) += avr/adc.c
