@@ -73,26 +73,26 @@ endchoice
 
 choice
     prompt "Set PWM Freq for D3+D11" if LOW_LEVEL_OPTIONS
-    config 30HZ_TIMER_D3_D11
+    config TIMER_30HZ_D3_D11
         bool "30.64 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config 122HZ_TIMER_D3_D11
+    config TIMER_122HZ_D3_D11
         bool "122.55 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config 245HZ_TIMER_D3_D11
+    config TIMER_245HZ_D3_D11
         bool "245.10 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config DEFAULT_TIMER_D3_D11
+    config TIMER_DEFAULT_D3_D11
         bool "490.20 Hz (default)"
 	default y
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config 980HZ_TIMER_D3_D11
+    config TIMER_980HZ_D3_D11
         bool "980.39 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config 3921HZ_TIMER_D3_D11
+    config TIMER_3921HZ_D3_D11
         bool "3921.16 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
-    config 31KHZ_TIMER_D3_D11
+    config TIMER_31KHZ_D3_D11
         bool "31372.55 Hz"
         depends on MACH_atmega168 || MACH_atmega328 || MACH_atmega328p
 endchoice
